@@ -1,0 +1,27 @@
+<%- model_class = Attest -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:atestado_nº) %></th>
+      <th><%= model_class.human_attribute_name(:data) %></th>
+      <th><%= model_class.human_attribute_name(:appointment_data) %></th>
+      <th><%= model_class.human_attribute_name(:periodo) %></th>
+      <th><%= model_class.human_attribute_name(:local) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @attests.each do |attest| %>
+      <tr>
+        <td><%= attest.id %></td>
+        <td><%= link_to attest.data, attest_path(attest) %></td>
+        <td><%= attest.appointment.data %></td>
+        <td><%= attest.periodo %> dias</td>
+        <td><%= attest.local %></td>       
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

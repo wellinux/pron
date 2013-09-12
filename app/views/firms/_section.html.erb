@@ -1,0 +1,6 @@
+<%= simple_form_for ([@firm, @firm.sections.build]), :html => { :class => 'form-horizontal' } do |s| %>
+
+  <%= s.hidden_field :firm_id, :html_input => { :value => @firm } %>
+  <%= s.input :secao %>
+  <%= s.button :submit, :class => 'btn-primary' %>
+<% end %>

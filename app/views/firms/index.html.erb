@@ -1,0 +1,26 @@
+<%- model_class = Firm -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:cnpj) %></th>
+      <th><%= model_class.human_attribute_name(:nome_fantasia) %></th>
+      <th><%= model_class.human_attribute_name(:atividade) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @firms.each do |firm| %>
+      <tr>
+        <td><%= firm.cnpj %></td>
+        <td><%= link_to firm.nome_fantasia, firm_path(firm) %></td>
+        <td><%= firm.atividade %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_firm_path,
+            :class => 'btn btn-primary' %>

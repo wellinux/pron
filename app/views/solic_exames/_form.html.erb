@@ -1,0 +1,9 @@
+<%= simple_form_for @solic_exame, :html => { :class => 'form-horizontal' } do |f| %>
+
+  <%= f.input :appointment_id, collection: Appointment.all, label_method: :data, label: "Cosulta" %>
+ 
+  <%= f.input :local, :input_html => { :vslue => "Penedo/AL" } %>
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+              appointment_path(@solic_exame.appointment.id), :class => 'btn' %>
+<% end %>

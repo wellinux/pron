@@ -1,0 +1,35 @@
+<%- model_class = Patient -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:matricula) %></th>
+      <th><%= model_class.human_attribute_name(:nome) %></th>
+      <th><%= model_class.human_attribute_name(:nome_mae) %></th>
+      <th><%= model_class.human_attribute_name(:sexo) %></th>
+      <th><%= model_class.human_attribute_name(:firm) %></th>
+      <th><%= model_class.human_attribute_name(:function) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @patients.each do |patient| %>
+      <tr>
+        <td><%= patient.matricula %></td>
+        <td><%= link_to patient.nome, patient_path(patient) %></td>
+        <td><%= patient.nome_mae %></td>
+        <td><%= patient.sexo %></td>
+        <td><%= patient.firm.nome_fantasia %></td>
+        <td><%= patient.function_id %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_patient_path(patient), :class => 'btn btn-mini' %>
+          <%= link_to "Excluir", patient_path(patient), :method => :delete, :confirm => "Você tem certeza?", :class => 'btn btn-mini btn-danger' %>
+          
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  record: 
+  data: 2013-08-06
+  exame: 
+  descricao_resultado: MyText
+  imagem: MyString
+
+two:
+  record: 
+  data: 2013-08-06
+  exame: 
+  descricao_resultado: MyText
+  imagem: MyString

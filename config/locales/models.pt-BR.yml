@@ -1,0 +1,161 @@
+pt-BR:
+  activerecord:
+    helpers:
+    actions: "Ações"
+    links:
+      back: "Voltar"
+      cancel: "Cancelar"
+      confirm: "Você tem certeza?"
+      destroy: "Excruir"
+      new: "Incluir"
+      edit: "Alterar"
+      save: "Cadastrar"
+    titles:
+      edit: "Alterar %{model}"
+      save: "Salvar %{model}"
+      new: "Incluir %{model}"
+      delete: "Excruir %{model}"
+    models:
+      event: "Agenda"
+      page: Página
+      user: Usuário
+      admin_user: Administradores
+      firm: "Empresa"
+      function: "Função"
+      patient: "Paciente"
+      section: "Seção"
+      user: "Usuário"
+      risk_category: "categoria de risco"
+      occupational_risk: "Risco Ocupacional"
+      record: "Prontuário"
+      appointment: "Consulta"
+    attributes:
+      event:
+        start_at: "Início"
+        end_at: "Final"
+        all_day: "O dia todo"
+        patient: "Paciente"
+      page:
+        title: Título
+        content: Conteúdo
+        created_at: Criado em
+        updated_at: Alterado em
+      admin_user:
+        id: "Código"
+        email: Email
+        password: Senha
+        password_confirmation: Confirmação da Senha
+        created_at: Criado em
+        updated_at: Alterado em
+        current_sign_in_at: Loggado em
+        last_sign_in_at: Login anterior em
+        sign_in_count: Número de logins
+      user:
+        id: "Código"
+        name: "Nome"
+        email: "Email"
+        password: "Senha"
+        password_confirmation: Confirmação da Senha
+        remember_me: Lembrar-me
+        created_at: Criado em
+        updated_at: Alterado em
+        current_sign_in_at: Último login em
+        sign_in_count: No. de logins
+        nome: "Nome"
+        encrypted_password: "Senha Encriptada"
+        reset_password_token: "Token reset senha"
+        reset_password_sent_at: "Reset de senha enviado em"
+        remember_created_at: ""
+        current_sign_in_at: ""
+        last_sign_in_at: ""
+        current_sign_in_ip: ""
+        last_sign_in_ip: ""
+      firm:
+        id: "Código"
+        cnpj: "CNPJ/CEI"
+        razao_social: "Razão Social"
+        nome_fantasia: "Nome Fantasia"
+        frente_trabalho: "Frente de Trabalho"
+        cnae: "Cnae"
+        atividade: "Atividade"
+        risco: "Risco"
+        endereco: "Endereço"
+        bairro: "Bairro"
+        cidade: "Cidade"
+        uf: "UF"
+        cep: "CEP"
+        telefone: "Telefone"
+        created_at: "Criado em"
+        updated_at: "Alterado em"
+      function:
+        id: "Código"
+        funcao: "Função"
+        firm_id: "Código Empresa"
+        created_at: "Criado em"
+        updated_at: "Alterado em"
+      patient:
+        id: "Código"
+        matricula: "Matrícula"
+        nome: "Nome"
+        nome_mae: "Nome da Mãe"
+        data_nascimento: "Data de Nascimento"
+        sexo: "Sexo"
+        documento: "Documento"
+        firm: "Empresa_Id"
+        firm: "Empresa"
+        section: "Setor"
+        function: "Função"
+        created_at: "Criado em"
+        updated_at: "Alterado em"
+      section:
+        id: "Código"
+        secao: "Setor"
+        firm_id: "Código Empresa"
+        created_at: "Criado em"
+        updated_at: "Alterado em"
+      user:
+        id: "Código" 
+        nome: "Nome"
+        created_at: "Criado em"
+        updated_at: "Alterado em"
+        email: "Email"
+        encrypted_password: "Senha Encriptada"
+        reset_password_token: "Reset pw token"
+        reset_password_sent_at: "Reset pw enviado em"
+        remember_created_at: "Lembrete - criado em"
+        sign_in_count: "Logado na conta"
+        current_sign_in_at: "Logado desde"
+        last_sign_in_at: "Último login em"
+        current_sign_in_ip: "Logano no IP"
+        last_sign_in_ip: "IP do último login"
+      risk_category:
+        id: "Código"
+        categoria_risco: "Categoria de Risco"
+        created_at: "Criado em"
+        updated_at: "Alterado em"
+      occupational_risk:
+        id: "Código"
+        risk_category: "Categoria de Risco"
+        nome_risco: "Risco Ocupacional"
+      record:
+        id: "Código"
+        data: "Data"
+        patient: "Paciente"
+        created_at: "Criado em"
+        updated_at: "Alterado em"
+      appointment:
+        id: "Código"
+        record: "Prontuário"
+        record_id: "Código Prontuário"
+        data: "Data"
+        patient: "Paciente"
+        altura: "Altura"
+        peso: "Peso"
+        imc: "IMC"
+        pulso: "Pulso"
+        pa: "PA"
+        anamnese: "Anamnese/Exame Físico"
+        resultado_exames: "Resultado dos Exames"
+        conclusao: "Conclusão"
+        created_at: "Criado em"
+        updated_at: "Alterado em"

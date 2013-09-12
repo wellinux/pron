@@ -1,0 +1,66 @@
+<div class="page-header centro">
+  <h3>Atestado Médico</h3>
+</div>
+<br />
+<br />
+<p>
+  Atesto para os devidos fins que <strong><%= @attest.appointment.record.patient.nome %></strong>, portador do <strong><%= @attest.appointment.record.patient.tipo_documento %></strong> 
+  Nº.: <strong><%= @attest.appointment.record.patient.documento %></strong>, foi submetido a consulta médica nesta data, sendo portador das afecções <strong>CID-10:</strong><strong> <%= @attest.cid %></strong> e em decorrência, deverá permanecer afastado de suas atividades laborativas por um período de <strong><%= @attest.quantidade_dias %> (dias)</strong>, desde ou apartir de <strong> <%=l @attest.data_inicial %></strong>.
+</p>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<strong><%= @attest.local %>, </strong> <%=l @attest.data %>.
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class "row">
+  <div class ="span4">
+    <p class = "ass">   Carimbo/Assinatura do médico   </p>
+  </div>
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+  <h4 class = "ass">Autorização</h4>
+  <p>
+    Eu, <strong><%= @attest.appointment.record.patient.nome %></strong>, autorizo o 
+    Dr. <strong>José Josué Nunes</strong>, a registrar o diagnóstico codificado ou por extenso neste atestado médico.
+  </p>
+  <br />
+  <br />
+  <div class "row">
+    <div class ="span4">
+      <p class = "ass centro">   Assinatura do Paciente ou Responsável   </p>
+    </div>
+  </div>
+
+<br />
+
+
+<div class="btn-group">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              attests_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_attest_path(@attest), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              attest_path(@attest),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

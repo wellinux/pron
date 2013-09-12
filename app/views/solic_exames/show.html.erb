@@ -1,0 +1,51 @@
+<%- model_class = SolicExame -%>
+<div class="page-header">
+  <h3>Solicitação de Exames</h3>
+</div>
+
+<br />
+<br />
+
+<p>
+  Solicito os seguintes exames para <strong><%= @solic_exame.appointment.record.patient.nome %></strong>:
+</p>
+
+<table class="table table-condensed">
+  <tbody>
+    <% for exame in @solic_exame.appointment.exames %>
+  <tr>
+    <td><i class="icon-check-empty"></i> <%= exame.nome %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <strong><%= @solic_exame.local %>, </strong> <%=l @solic_exame.created_at, format: :long %>
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <div class "row">
+    <div class ="span4">
+      <p class = "ass">   Carimbo/Assinatura do médico   </p>
+    </div>
+  </div>
+  <br />
+  <br />
+
+<div class="btn-group">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              appointment_path(@solic_exame.appointment.id), :class => 'btn btn-mini'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_appointment_solic_exame_path(@solic_exame), :class => 'btn btn-warning btn-mini' %>
+</div>

@@ -1,0 +1,24 @@
+<h1>Listing records</h1>
+
+<table class = 'table table-striped'>
+  <tr>
+    <th>Paciente</th>
+    <th>Data</th>
+    <th>Ações</th>
+  </tr>
+
+<% @records.each do |record| %>
+  <tr>
+    <td><%= record.patient.nome %></td>
+    <td><%=l record.data %></td>
+    <td>
+      <%= link_to 'Show', record, :class => 'btn btn-mini btn-info' %>
+      <%= link_to 'Edit', edit_record_path(record), :class => 'btn btn-mini btn-warning' %>
+    </td>    
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Record', new_record_path, :class => 'btn btn-mini btn-primary' %>

@@ -1,0 +1,2 @@
+module ExameCategoriesHelper
+end

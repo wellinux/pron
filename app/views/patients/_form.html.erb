@@ -1,0 +1,18 @@
+<%= simple_form_for @patient, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :firm_id, collection: Firm.all, label_method: :nome_fantasia, label: "Empresa" %>
+  <%= f.input :matricula %>
+  <%= f.input :nome %>
+  <%= f.input :nome_mae %>
+  <%= f.input :sexo %>
+  <%= f.input :documento %>
+  <%= f.input :tipo_documento %>
+  <%= f.input :section_id, collection: Section.all, label_method: :secao, label: "Seção" %>
+  <%= f.input :function_id, collection: Function.all, label_method: :funcao, label: "Função" %>
+  <%= f.input :data_nascimento, :as => :ui_date_picker, :class => 'ui-date-picker' %>  
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                patients_path, :class => 'btn' %>
+  </div>
+<% end %>

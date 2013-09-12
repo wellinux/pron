@@ -1,0 +1,24 @@
+<%- model_class = OccupationalRisk -%>
+<div class="page-header">
+  <h3><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h3>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:nome_risco) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @occupational_risks.each do |occupational_risk| %>
+      <tr>
+        <td><%= occupational_risk.id %></td>
+        <td><%= link_to occupational_risk.nome_risco, occupational_risk_path(occupational_risk) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_occupational_risk_path,
+            :class => 'btn btn-primary' %>

@@ -1,0 +1,136 @@
+<%- model_class = Firm -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<div class="btn-group">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              firms_path, :class => 'btn'  %>
+
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_firm_path(@firm), :class => 'btn btn-warning' %>
+
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              firm_path(@firm),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+
+  <!-- Button to trigger modal Section -->
+  <a href="#modal_s" role="button" class="btn btn-primary" data-toggle="modal">
+    <i class="icon-search icon-plus"></i> Setor
+  </a>
+
+  <!-- Button to trigger modal Function -->
+  <a href="#modal_f" role="button" class="btn btn-primary" data-toggle="modal">
+    <i class="icon-search icon-plus"></i> Função
+  </a>
+
+  <!-- Button to trigger modal Patient -->
+  <a href="#modal_p" role="button" class="btn btn-primary" data-toggle="modal">
+    <i class="icon-search icon-plus"></i> Paciente
+  </a>
+              
+</div><br />
+
+<a href="#" rel="tooltip" title="primeiro tooltip">passe o mouse em mim</a>
+
+<dl class="dl-horizontal">
+
+  <dt><strong><%= model_class.human_attribute_name(:nome_fantasia) %>:</strong></dt>
+    <dd><strong><%= @firm.nome_fantasia %></strong></dd>
+  
+  <dt><strong><%= model_class.human_attribute_name(:endereco) %>:</strong></dt>
+    <dd><%= @firm.endereco %></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:bairro) %>:</strong></dt>
+    <dd><%= @firm.bairro %></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:cidade) %>:</strong></dt>
+    <dd><%= @firm.cidade %></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:uf) %>:</strong></dt>
+    <dd><%= @firm.uf %></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:cep) %>:</strong></dt>
+    <dd><%= @firm.cep %></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:telefone) %>:</strong></dt>
+    <dd><%= @firm.telefone %></dd>
+</dl>
+
+<h4>Pacientes:</h4>
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th><strong>Matrícula</strong></th>
+      <th><strong>Paciente</strong></th>
+      <th><strong>Nome da Mãe</strong></th>
+      <th><strong>Função</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @firm.patients.each do |patient| %>
+  <tr>
+    <td><%= patient.matricula %></td>
+    <td><%= link_to patient.nome, firm_patient_path(@firm, patient) %></td>
+    <td><%= patient.nome_mae %></td>
+    <td><%= patient.function.funcao %></td>
+    
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<!-- modal Section =================================================================== -->
+
+<div id="modal_s" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true">
+  <div class="modal-header">
+    <a href="#" class="close" data-dismiss="modal">&times;</a>
+    <h3>Incluir Seção</h3>
+  </div>
+  <div class="modal-body">
+    <div class="divDialogElements">
+      <%= render 'section' %>
+    </div>
+  </div>
+  <div class="modal-footer">    
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                firm_path(@firm), :class => 'btn btn-inverse' %>
+  </div>
+</div>
+
+<!-- modal Function =================================================================== -->
+
+<div id="modal_f" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true">
+  <div class="modal-header">
+    <a href="#" class="close" data-dismiss="modal">&times;</a>
+    <h3>Incluir Função</h3>
+  </div>
+  <div class="modal-body">
+    <div class="divDialogElements">
+      <%= render 'function' %>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                firm_path(@firm), :class => 'btn btn-inverse' %>
+  </div>
+</div>
+
+<!-- modal Patient =================================================================== -->
+<div id="modal_p" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true">
+  <div class="modal-header">
+    <a href="#" class="close" data-dismiss="modal">&times;</a>
+    <h3>Incluir Paciente</h3>
+  </div>
+  <div class="modal-body">
+    <div class="divDialogElements">
+      <%= render 'patient' %>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                firm_path(@firm), :class => 'btn btn-inverse' %>
+  </div>  
+</div>

@@ -1,0 +1,6 @@
+<%= simple_form_for([@patient, @patient.records.build]) do |f| %>
+	<%= f.error_notification %>
+  <%= f.hidden_field :patient_id, :html_input => { :value => @patient } %>
+  <%= f.input :data, as: :string %>
+  <%= f.button :submit %>
+<% end %>

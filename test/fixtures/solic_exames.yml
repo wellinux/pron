@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  appointment: 
+  local: MyString
+
+two:
+  appointment: 
+  local: MyString

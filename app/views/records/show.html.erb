@@ -1,0 +1,76 @@
+
+<div>
+  <h1><em>Prontuário</em></h1>
+</div>
+<p>
+  <b>Data de abertura: </b><%=l @record.data %>
+</p>
+<p>
+<h4 class = "caixa" ><small>Paciente: </small><%= @record.patient.nome %></h4>
+</p>
+
+<p> 
+  <strong>Matrícula: <%= @record.patient.matricula %>  || </strong>
+  <strong>Data Nasc.: <%=l @record.patient.data_nascimento %> </strong>
+</p>
+
+<table class="table table-striped">
+<thead>
+  <tr>
+    <th>Data da Consulta</th>
+    <th>Ordem da Consulta</th>
+    <th>Categoria exame</th>
+    <th>Status</th>
+    <th>Conclusão</th>
+    <th><%=t '.actions', :default => t("helpers.actions") %></th>
+  </tr>
+</thead>
+<tbody>
+  <% @record.appointments.each do |appointment| %>
+    <tr>
+      <td><strong><%=l(appointment.data) %></strong></td>
+      <td><%= appointment.ordem_exame %></td>
+      <td><%= appointment.categoria_exame %></td>
+      <td><%= appointment.status %></td>
+      <td><%= appointment.conclusao %></td>
+      <td>
+        <%= link_to 'Exibir',
+                    record_appointment_path(@record, appointment), :class => 'btn btn-mini btn-info' %>
+      
+        <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                    edit_record_appointment_path(@record, appointment), :class => 'btn btn-mini btn-warning' %>
+    
+      </td>
+    </tr>
+  <% end %>
+</tbody>
+</table>  
+<br />
+<br />
+<br />
+<br />
+
+<div class = "btn-group">
+	<%= link_to 'Voltar', patient_path(@record.patient.id), :class => "btn btn-mini" %>
+	<%= link_to 'Alterar', edit_patient_record_path(@record), :class => "btn btn-mini btn-warning" %>
+  <!-- Button to trigger modal Patient -->
+  <a href="#modal_con" role="button" class="btn btn-primary btn-mini" data-toggle="modal">
+    <i class="icon-search icon-plus"></i> Consulta
+  </a>
+</div>
+</div>
+
+<div id="modal_con" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true">
+<div class="modal-header">
+  <a href="#" class="close" data-dismiss="modal">&times;</a>
+  <h3>Consulta</h3>
+</div>
+<div class="modal-body">
+  <div class="divDialogElements">
+    <%= render 'appointment' %>
+  </div>
+</div>
+<div class="modal-footer">    
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+              record_path(@record), :class => 'btn btn-inverse btn-small' %>
+</div>

@@ -1,0 +1,7 @@
+// Place all the styles related to the patients controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#modal_ev {
+	width: 1000px; /* SET THE WIDTH OF THE MODAL */
+	margin: -20px 0px 0px -500px;/* CHANGE MARGINS TO ACCOMODATE THE NEW WIDTH (original = margin: -250px 0 0 -280px;) */
+}

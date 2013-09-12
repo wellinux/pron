@@ -1,0 +1,21 @@
+<%- model_class = Exame -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:categoria) %></th>
+      <th><%= model_class.human_attribute_name(:nome) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @exames.each do |exame| %>
+      <tr>
+        <td><%= exame.exame_category.nome %></td>
+        <td><%= link_to exame.nome, exame_category_path(exame.exame_category.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br />

@@ -1,0 +1,24 @@
+<%= simple_nested_form_for @exame_category, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :nome %>
+  	<%= f.simple_fields_for :exames do |ff| %>
+			<div class = "" >
+				<div class = "row">
+					<div class = "span5">
+						<%= ff.input :nome, :required => false, :placeholder => 'Nome do Risco'%>
+					</div>
+					<div class = "span6">
+						<%= ff.link_to_remove "",	:class => 'btn btn-danger icon-minus-sign icon-white' %>
+					</div>
+				</div>
+			</div>
+			<% end %>
+			
+			<%= f.link_to_add "", :exames, 
+														:class => 'btn btn-primary icon-plus-sign icon-white' %>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                exame_categories_path, :class => 'btn' %>
+  </div>
+<% end %>

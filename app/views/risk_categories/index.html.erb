@@ -1,0 +1,22 @@
+<%- model_class = RiskCategory -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:Categoria) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @risk_categories.each do |risk_category| %>
+      <tr>
+        <td><%= link_to risk_category.nome, risk_category_path(risk_category) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_risk_category_path,
+            :class => 'btn btn-primary' %>

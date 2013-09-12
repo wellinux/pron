@@ -1,0 +1,20 @@
+<%- model_class = Risk -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:risk_category) %></th>
+      <th><%= model_class.human_attribute_name(:nome_risco) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @risks.each do |risk| %>
+      <tr>
+        <td><%= risk.risk_category.nome %></td>
+        <td><%= risk.nome_risco %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

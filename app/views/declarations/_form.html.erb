@@ -1,0 +1,13 @@
+<%= simple_form_for @declaration, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :appointment_id %>
+  <%= f.input :dia %>
+  <%= f.input :hora_inicio %>
+  <%= f.input :hora_termino %>
+  <%= f.input :anotacoes, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'mini'} } %>
+  <%= f.input :local %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                appointment_path(@declaration.appointment.id), :class => 'btn' %>
+  </div>
+<% end %>

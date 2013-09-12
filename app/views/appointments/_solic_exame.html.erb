@@ -1,0 +1,7 @@
+<%= simple_form_for ([@appointment, @appointment.solic_exames.build]), :html => { :class => 'form-horizontal' } do |f| %>
+
+	<%= f.hidden_field :appointment_id, :html_input => { :value => @appointment } %>
+	
+	<%= f.input :local, :input_html => { :value => "Penedo/AL" } %>
+	<%= f.button :submit, :class => 'btn btn-primary' %>
+<% end %>

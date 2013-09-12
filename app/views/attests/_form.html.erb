@@ -1,0 +1,10 @@
+<%= simple_form_for (@attest), :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.association :appointment, label_method: :data, value_method: :id %>
+  <%= f.input :data, as: :string, :input_html => { :value => l(Date.today) } %>
+  <%= f.input :cid, label: 'CID-10' %>
+  <%= f.input :quantidade_dias, hint: 'Ex.: 10' %>
+  <%= f.input :data_inicial, as: :string, :input_html => { :value => l(Date.today+1) } %>
+  <%= f.input :local, :input_html => { :value => "Penedo/AL" } %>
+  <%= f.button :submit, :class => 'btn btn-primary btn-small' %>
+  </div>
+<% end %>

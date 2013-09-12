@@ -1,0 +1,273 @@
+<div class = "conteudo" >
+  <div class = "row">
+    <div class ="span7">
+      <h3>Prontuário - <%=  l(@appointment.data) %></h3>
+    </div>
+    <div class ="span2 offset2">
+      <div class = "label label-info">Consulta nº: <%= @appointment.ordem_exame %> </div>
+    </div> 
+  </div>
+
+  <div class = "row">
+    <div class ="span12">
+      <div class = "well well-small">
+        <p><h4><small>Paciente: </small> <%= @appointment.record.patient.nome %></h4></p>
+      </div>
+    </div>
+  </div>
+
+  <div class = "row">
+    <div class ="span12">
+      <div class = "well well-small">
+        <p><h4><small>Empresa: </small> <%= @appointment.record.patient.firm.nome_fantasia %></h4></p>
+      </div>
+    </div>
+  </div>
+
+  <div class = "row">
+    <div class ="span2">
+      <p><strong>Matrícula: </strong><%= @appointment.record.patient.matricula %></p>
+    </div>
+    <div class ="span10">
+      <p><strong>Data de nascimento: </strong><%=l @appointment.record.patient.data_nascimento %></p>
+    </div>
+  </div>
+
+  <div class = "row">
+    <div class = "span2">
+      <p><strong>Peso(kg): </strong> <%= @appointment.peso %></p>
+    </div>
+    <div class = "span2">
+      <p><strong>Altura: </strong> <%= @appointment.altura %> m</p>
+    </div>
+    <div class = "span2">
+      <p><strong>IMC: </strong> <%= (@appointment.imc).round(2) %> 
+      </p>
+    </div>
+    <div class = "span4">
+      <p><strong>P.A.: </strong> <%= @appointment.pa %></p>
+    </div>
+    <div class = "span2">
+      <p><strong>Pulso: </strong> <%= @appointment.pulso %></p>
+    </div>
+  </div>
+  <hr />
+
+  <div class = "row">
+    <div class = "span12">
+      <strong>Anamnese:</strong>
+      <div class="alert alert-info">
+        <%= raw(@appointment.anamnese) %>
+      </div>
+    </div>
+  </div>
+
+  <div class = "row">
+    <div class = "span12">
+      <strong>Exame Físico:</strong>
+      <div class="alert alert-info">
+        <%= raw(@appointment.exame_fisico) %>
+      </div>
+    </div>
+  </div>
+  <h5>Exames / Resultados:</h5>
+  
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><strong>Tipo de Exame </strong></th>
+        <th><strong>Exame</strong></th>
+        <th><strong>Data</strong></th>
+        <th><strong>Descrição do Resultado</strong></th>
+        <th><strong>Imagem</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% for complementary_exam in @appointment.complementary_exams %>
+    <tr>
+      <td><%= complementary_exam.exame.exame_category.nome %></td>
+      <td><%= complementary_exam.exame.nome %></td>
+      <td><%= complementary_exam.data %></td>
+      <td><%= complementary_exam.descricao_resultado %></td>
+      <td><%= image_tag complementary_exam.imagem.url(:thumb) %></td>
+    </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <hr />
+  <div class = "row">
+    <div class = "span3">
+      <strong>Conclusão: </strong><span class = "label label-warning"><%= @appointment.conclusao %></span>
+    </div>
+    <div class = "span9">
+      <strong>Status: </strong><span class = "label label-info"><%= @appointment.status %></span>
+    </div>
+  </div><br />
+
+  <div class = "row-fluid">
+    <div class = "span12">
+      <div class="btn-group">
+
+        <%= link_to t('.back', :default => t("helpers.links.back")),
+                    record_path(@appointment.record.id), :class => 'btn' %>
+
+        <% if can? :edit, @appointment %>
+        <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                    edit_appointment_path(@appointment), :class => 'btn btn-warning' %>
+        <% end %>
+
+        <% if @appointment.asos.empty? %>
+          <!-- Button to trigger modal Section -->
+          <a href="#modal_aso" role="button" class="btn btn-primary" data-toggle="modal">
+            <i class="icon-search icon-plus"></i> ASO
+          </a>
+        <% else %>
+          <% for aso in @appointment.asos %>
+            <%= link_to '<i class="icon-paste"> </i>ASO'.html_safe, appointment_aso_path(@appointment, aso), :class => 'btn btn-info' %>
+          <% end %>
+        <% end %>
+
+        <% if @appointment.declarations.empty? %>
+          <a href="#modal_dec" role="button" class="btn btn-primary" data-toggle="modal" data-dynamic="true">
+            <i class="icon-file-text"></i> Declaração
+          </a>
+        <% else %>
+          <% for declaration in @appointment.declarations %>
+            <%= link_to '<i class="icon-file-text-alt"> </i>Declaração'.html_safe, appointment_declaration_path(@appointment, declaration), :class => 'btn btn-info' %>
+          <% end %>
+        <% end %>
+
+        <a href="#modal_atest" role="button" class="btn btn-primary" data-toggle="modal">
+          <i class="icon-stethoscope"></i> Atestado
+        </a>
+
+        <a href="#modal_exa" role="button" class="btn btn-primary" data-toggle="modal">
+          <i class="icon-beaker"></i> Solicitar Exame
+        </a>
+
+        <a href="#modal_rec" role="button" class="btn btn-primary" data-toggle="modal">
+          <i class="icon-medkit"></i> Receituário
+        </a>
+
+        <a href="#modal_doc" role="button" class="btn btn-primary" data-toggle="modal">
+          <i class="icon-file-text-alt"></i> Redigir Doc
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- modal Aso =================================================================== -->
+  <div id="modal_aso" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true">
+    <div class="modal-header">
+      <a href="#" class="close" data-dismiss="modal">&times;</a>
+      <h3>Incluir ASO</h3>
+    </div>
+      <div class="modal-body">
+        <div class="divDialogElements">
+
+          <%= render 'aso' %>
+
+      </div>
+    </div>
+      <div class="modal-footer">    
+        <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                    appointment_path(@appointment), :class => 'btn btn-inverse' %>
+      </div>  
+  </div>
+
+  <!-- modal Declaração =================================================== -->
+
+  <div id="modal_dec" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true">
+    <div class="modal-header">
+      <a href="#" class="close" data-dismiss="modal">&times;</a>
+      <h3>Incluir Declaração</h3>
+    </div>
+    <div class="modal-body">
+      <div class="divDialogElements">
+
+        <%= render 'declaration' %> 
+
+      </div>
+    </div>
+    <div class="modal-footer">
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  appointment_path(@appointment), :class => 'btn btn-inverse' %>
+    </div>  
+  </div>
+</div>
+
+<!-- modal Atestado ========================================================= -->
+  <div id="modal_atest" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true">
+    <div class="modal-header">
+      <a href="#" class="close" data-dismiss="modal">&times;</a>
+      <h3>Emitir Atestado</h3>
+    </div>
+      <div class="modal-body">
+        <div class="divDialogElements">
+          <%= render 'atestado' %>
+      </div>
+    </div>
+      <div class="modal-footer">    
+        <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                    appointment_path(@appointment), :class => 'btn btn-inverse' %>
+      </div>  
+  </div>
+
+  <!-- modal Solicitação Exames =============================================== -->
+  <div id="modal_exa" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true">
+    <div class="modal-header">
+      <a href="#" class="close" data-dismiss="modal">&times;</a>
+      <h3>Solicitação de Exames</h3>
+    </div>
+      <div class="modal-body">
+        <div class="divDialogElements">
+          <%= render 'solic_exame' %>
+      </div>
+    </div>
+      <div class="modal-footer">    
+        <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                    appointment_path(@appointment), :class => 'btn btn-inverse' %>
+      </div>  
+  </div>
+
+  <!-- modal Solicitação Receituário ========================================= -->
+  <div id="modal_rec" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true">
+    <div class="modal-header">
+      <a href="#" class="close" data-dismiss="modal">&times;</a>
+      <h3>Prescrever Medicamentos</h3>
+    </div>
+      <div class="modal-body">
+        <div class="divDialogElements">
+          <%= simple_form_for ([@appointment, @appointment.receituarios.build]), :html => { :class => 'form-horizontal' } do |f| %>
+            <%= f.hidden_field :appointment_id, :input_html => { :value =>  @appointment } %>
+            <%= f.input :prescricao, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'tiny'} } %>
+            <%= f.input :local, :input_html => { :value => 'Penedo/AL' } %>
+
+            <%= f.button :submit, :class => 'btn-primary' %>
+          <% end %>
+      </div>
+    </div>
+      <div class="modal-footer">    
+        <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                    appointment_path(@appointment), :class => 'btn btn-inverse' %>
+      </div>  
+  </div>
+
+  <!-- modal Solicitação Exames =============================================== -->
+  <div id="modal_doc" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true">
+    <div class="modal-header">
+      <a href="#" class="close" data-dismiss="modal">&times;</a>
+      <h3>Redigir Documento</h3>
+    </div>
+      <div class="modal-body">
+        <div class="divDialogElements">
+          <p>Redigir Documento</p>
+      </div>
+    </div>
+      <div class="modal-footer">    
+        <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                    appointment_path(@appointment), :class => 'btn btn-inverse' %>
+      </div>  
+  </div>  

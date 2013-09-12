@@ -1,0 +1,18 @@
+<%- model_class = Risk -%>
+<div class="page-header">
+  <h3>Riscos</h3>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:nome_risco) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @risk_category.risks.each do |risk| %>
+      <tr>
+        <td><%= risk.nome_risco %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

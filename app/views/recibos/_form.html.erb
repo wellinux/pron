@@ -1,0 +1,11 @@
+<%= simple_form_for @recibo, :html => { :class => 'form-horizontal' } do |f| %>
+
+  <%= f.association :patient, label_method: :nome , value_method: :id, include_blank: false, readonly: true %>
+  <%= f.input :data, as: :string, :input_html => { :value => l(Date.today) } %>    
+  <%= f.input :valor %>
+  <%= f.input :valor_extenso %>
+  <%= f.input :referente, :input_html => { :cols => 100, :rows => 2 } %>
+  <%= f.input :pj %>
+  <hr />
+  <%= f.button :submit %>
+<% end %>

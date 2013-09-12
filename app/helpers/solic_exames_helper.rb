@@ -1,0 +1,2 @@
+module SolicExamesHelper
+end

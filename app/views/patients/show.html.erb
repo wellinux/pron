@@ -1,0 +1,136 @@
+<%- model_class = Patient -%>
+<div class="page-header">
+  <h1><%= @patient.nome %></h1>
+</div>
+
+<div class="btn-group">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              firm_path(@patient.firm.id), :class => 'btn'  %>
+
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_patient_path(@patient), :class => 'btn btn-warning' %>
+
+<% if @patient.records.empty? %>
+    <!-- Button to trigger modal Record -->
+    <a href="#modal_p" role="button" class="btn btn-primary" data-toggle="modal">
+      <i class="icon-folder-open"></i> Prontuário
+    </a>
+  <% else %>
+    <% for record in @patient.records %>
+      
+    <%= link_to '<i class="icon-folder-open"> </i>Prontuário'.html_safe, patient_record_path(@patient, record), :class => "btn btn-primary"  %>
+
+    <% end %>
+<% end %>
+
+<!-- Button to trigger modal Agenda -->
+<a href="#modal_ev" role="button" class="btn btn-primary" data-toggle="modal">
+  <i class="icon-user-md"></i> Agenda
+</a>
+
+<!-- Button to trigger modal Recibo -->
+<a href="#modal_rec" role="button" class="btn btn-primary" data-toggle="modal">
+  <i class="icon-file-text-alt"></i> Emitir Recibo
+</a>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:Empresa) %>:</strong></dt>
+  <dd><%= @patient.firm.nome_fantasia %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:nome_mae) %>:</strong></dt>
+  <dd><%= @patient.nome_mae %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:sexo) %>:</strong></dt>
+  <dd><%= @patient.sexo %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:function) %>:</strong></dt>
+  <dd><%= @patient.function.funcao %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:data_nascimento) %>:</strong></dt>
+  <dd><%=l @patient.data_nascimento %></dd>
+</dl>
+
+<hr />
+
+<!-- modal Records ====================================================== -->
+
+<div id="modal_p" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true">
+  <div class="modal-header">
+    <a href="#" class="close" data-dismiss="modal">&times;</a>
+    <h3>Iniciar Prontuário</h3>
+  </div>
+  <div class="modal-body">
+    <div class="divDialogElements">
+      <%= render 'prontuario' %>
+    </div>
+  </div>
+  <div class="modal-footer">    
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                patient_path(@patient), :class => 'btn btn-inverse' %>
+  </div>
+</div>
+
+<!-- modal Agenda ====================================================== -->
+<div id="modal_ev" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true">
+  <div class="modal-header">
+    <a href="#" class="close" data-dismiss="modal">&times;</a>
+    <h3>Agendar Consulta</h3>
+  </div>
+  <div class="modal-body">
+    <div class="divDialogElements">
+      <%= render 'agenda' %>
+    </div>
+  </div>
+  <div class="modal-footer">    
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                patient_path(@patient), :class => 'btn btn-inverse' %>
+  </div>
+</div>
+
+<!-- modal Recibo ====================================================== -->
+<div id="modal_rec" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true">
+  <div class="modal-header">
+    <a href="#" class="close" data-dismiss="modal">&times;</a>
+    <h3>Emitir Recibo</h3>
+  </div>
+  <div class="modal-body">   
+    <%= render 'recibo' %>
+  </div>
+  <div class="modal-footer">    
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                patient_path(@patient), :class => 'btn btn-inverse' %>
+  </div>
+</div>
+<% if @patient.appointments.empty? %>
+
+<div class "centro">
+  <h4>Este paciente ainda não possui nenhuma consulta.</h4>
+</div>
+
+<% else %>
+
+<div class "centro">
+  <h4>Consultas</h4>
+</div>
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Data da Consulta</th>
+      <th>Categoria Exame</th>
+      <th>Status</th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @patient.appointments.each do |appointment| %>
+      <tr>
+        <td><strong><%=l appointment.data %></strong></td>
+        <td><%= appointment.categoria_exame %></td>
+        <td><%= appointment.status %></td>
+        <td>
+          <%= link_to 'Exibir',
+                      appointment_path(appointment), :class => 'btn btn-mini btn-info' %>
+      
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+  </table> 
+<% end %>

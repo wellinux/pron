@@ -1,0 +1,121 @@
+<div class = "caixa">
+  <p>
+    <strong>Empresa: </strong><strong class="subtit">
+    <%= @aso.appointment.record.patient.firm.nome_fantasia %></strong>
+    <br />
+    <strong>Endereço:&nbsp;</strong>
+    <%= @aso.appointment.record.patient.firm.endereco %>, 
+    <%= @aso.appointment.record.patient.firm.bairro %>
+    <%= @aso.appointment.record.patient.firm.cidade %>-<%= @aso.appointment.record.patient.firm.uf %>
+    <br />
+    <strong>CNPJ/CEI:</strong>&nbsp;<%= @aso.appointment.record.patient.firm.cnpj %>&nbsp;&nbsp;
+    <strong>Atividade:</strong>&nbsp;<%= @aso.appointment.record.patient.firm.atividade %>&nbsp;&nbsp;
+    <strong>CNAE:</strong>&nbsp;<%= @aso.appointment.record.patient.firm.cnae %>&nbsp;&nbsp;
+    <strong>Risco:</strong>&nbsp;<%= @aso.appointment.record.patient.firm.risco %>
+  </p>
+</div>
+
+<div class = "caixa">
+  <p>
+    <strong>Paciente:&nbsp;</strong>
+    <strong class="subtit"><%= @aso.appointment.record.patient.nome %></strong>&nbsp;&nbsp;&nbsp;&nbsp;
+    <strong>Mat.:&nbsp;</strong><%= @aso.appointment.record.patient.matricula %>
+    <br />    
+    <strong><%= @aso.appointment.record.patient.tipo_documento %>:&nbsp;</strong>
+    <%= @aso.appointment.record.patient.documento %>&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <strong>Data Nasc.:&nbsp;</strong><%=l @aso.appointment.record.patient.data_nascimento %>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <strong>Função:&nbsp;</strong><%= @aso.appointment.funcao %>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <strong>Seção:&nbsp;</strong><%= @aso.appointment.secao %>
+  </p>
+</div>
+
+<div class = "centro">
+  <h4><u>ATESTADO DE SAÚDE OCUPACIONAL(ASO)</h4>
+</div>
+
+<div class = "centro">
+  <p class = "subtit2"><strong>Tipo de Exame:</u> <%= @aso.appointment.categoria_exame %></strong></p>
+</div>
+
+<br />
+<div class = "caixa">
+  <strong class = "subtit2"><u>Riscos Ocupacionais Existentes na Atividade:</u></strong>
+  <% @aso.risks.each do |risk| %>
+  <ul class="unstyled">
+    <li><i class = "icon icon-ok-sign"></i> <%= risk.nome_risco %></li>
+  </ul>
+  <% end %>
+    
+  <p>
+    <strong class = "subtit2"><u>Grau de Exposição aos Riscos:</u>&nbsp;&nbsp;</strong><i class = "icon  icon-check"></i>&nbsp;
+    <%= @aso.grau_exposicao %>
+  </p>
+  <p>
+    <strong>
+    Exame Clínico: &nbsp;</strong>&nbsp;
+    Realizado em&nbsp;<%=l @aso.appointment.data %>
+    
+  </p>
+  <p>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><strong class = "subtit2"><u>Exames Complementares</u></strong></th>
+          <th><strong class = "subtit2"><u>Data da realização</u></strong></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% for complementary_exam in @aso.appointment.complementary_exams %>
+      <tr>
+        <td><strong><%= complementary_exam.exame.nome %></strong></td>
+        <td><%= complementary_exam.data %></td>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </p>
+</div>
+
+<div class = "caixa">
+  <p><strong class = "subtit2">Periodicidade(validade do ASO):&nbsp; <i class = "icon  icon-check"></i> <%= @aso.periodicidade %></strong>
+  </p>
+  <p>
+  <strong class = "subtit2">Conclusão:</strong>
+  <strong class="subtit"><i class = "icon  icon-check"></i> <%= @aso.appointment.conclusao %></strong>
+  </p>
+</div>
+<div class = "caixa">
+<strong class = "subtit2">Observações:</strong><br />
+  <%= raw(@aso.obs) %>
+
+</div>
+<br />
+<br />
+<br />
+<div class "row">
+  <div class ="span5">
+    <p class ="centro">   Recebi segunda via em: <%=l Date.today %>   </p>
+    <br />
+    <br />
+    <p class = "ass centro"> &nbsp;<small>Empregado (Assinatura/Impressão digital)</small>&nbsp;</p>
+  </div>
+  <div class ="span5">
+    <p class ="centro"><strong>Penedo-AL, </strong> <%=l @aso.data %></p>
+    <br />
+    <br />
+    <p class = "ass centro">&nbsp;<small>Carimbo/Assinatura do médico</small>&nbsp;</p>
+  </div>
+</div>
+<div class "row">
+  <div class ="span12">
+    <div class="btn-group">
+      <%= link_to t('.back', :default => t("helpers.links.back")),
+                  appointment_path(@aso.appointment.id), :class => 'btn btn-mini'  %>
+      <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                  edit_aso_path(@aso), :class => 'btn btn-warning btn-mini' %>
+    </div>
+  </div>
+</div>

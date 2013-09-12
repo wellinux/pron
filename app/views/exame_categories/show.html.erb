@@ -1,0 +1,26 @@
+<%- model_class = ExameCategory -%>
+<div class="page-header">
+  <h1>Exames - <%= @exame_category.nome %></h1>
+</div>
+
+<div class="btn-group">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              exame_categories_path, :class => 'btn btn-small'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_exame_category_path(@exame_category), :class => 'btn btn-warning btn-small' %>
+</div>
+
+
+<h4>Lista de exames - Total: <%= @exame_category.exames.count %> exames</h4>
+
+<table class="table table-condensed table-hover">
+  <tr>
+    <th>Nome</th>
+  </tr>
+
+<% @exame_category.exames.each do |exame| %>
+  <tr>
+    <td><%= exame.nome %></td>
+  </tr>
+<% end %>
+</table>

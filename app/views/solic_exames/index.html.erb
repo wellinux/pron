@@ -1,0 +1,27 @@
+<%- model_class = SolicExame -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:para_o_paciente) %></th>
+      <th><%= model_class.human_attribute_name(:Consulta) %></th>
+      <th><%= model_class.human_attribute_name(:data_e_hora) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @solic_exames.each do |solic_exame| %>
+      <tr>
+        <td><%= solic_exame.appointment.record.patient.nome %></td>
+        <td>consulta nº <%= solic_exame.appointment.ordem_exame %></td>
+        <td><%=l solic_exame.created_at, format: :short %></td>
+        <td>
+          <%= link_to 'Exibir',
+                    solic_exame_path(solic_exame), :class => 'btn btn-mini btn-info' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

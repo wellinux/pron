@@ -1,0 +1,35 @@
+<%- model_class = ComplementaryExam -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:appointment_id) %>:</strong></dt>
+  <dd><%= @complementary_exam.appointment_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:data) %>:</strong></dt>
+  <dd><%= @complementary_exam.data %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:descricao_resultado) %>:</strong></dt>
+  <dd><%= @complementary_exam.descricao_resultado %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:exame) %>:</strong></dt>
+  <dd><%= @complementary_exam.exame %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:imagem_file_name) %>:</strong></dt>
+  <dd><%= @complementary_exam.imagem_file_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:imagem_content_type) %>:</strong></dt>
+  <dd><%= @complementary_exam.imagem_content_type %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:imagem_file_size) %>:</strong></dt>
+  <dd><%= @complementary_exam.imagem_file_size %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:imagem_updated_at) %>:</strong></dt>
+  <dd><%= @complementary_exam.imagem_updated_at %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              complementary_exams_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_complementary_exam_path(@complementary_exam), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              complementary_exam_path(@complementary_exam),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

@@ -1,0 +1,15 @@
+<%= simple_form_for @complementary_exam, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :appointment_id %>
+  <%= f.input :data %>
+  <%= f.input :descricao_resultado %>
+  <%= f.association :exame, label_method: :nome, value_method: :id %>
+  <%= f.input :imagem_file_name %>
+  <%= f.input :imagem_content_type %>
+  <%= f.input :imagem_file_size %>
+  <%= f.input :imagem_updated_at %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                complementary_exams_path, :class => 'btn' %>
+  </div>
+<% end %>

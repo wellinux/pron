@@ -1,0 +1,44 @@
+<%- model_class = Declaration -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:appointment_id) %></th>
+      <th><%= model_class.human_attribute_name(:dia) %></th>
+      <th><%= model_class.human_attribute_name(:hora_inicio) %></th>
+      <th><%= model_class.human_attribute_name(:hora_termino) %></th>
+      <th><%= model_class.human_attribute_name(:local) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @declarations.each do |declaration| %>
+      <tr>
+        <td><%= link_to declaration.id, declaration_path(declaration) %></td>
+        <td><%= declaration.appointment_id %></td>
+        <td><%= declaration.dia %></td>
+        <td><%= declaration.hora_inicio %></td>
+        <td><%= declaration.hora_termino %></td>
+        <td><%= declaration.local %></td>
+        <td><%=l declaration.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_declaration_path(declaration), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      declaration_path(declaration),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_declaration_path,
+            :class => 'btn btn-primary' %>

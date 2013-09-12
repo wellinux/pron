@@ -1,0 +1,10 @@
+<%= simple_form_for ([@patient, @patient.events.build]), :html => { :class => 'form-horizontal' } do |f| %>
+	<%= f.error_notification %>
+  <%= f.hidden_field :patient_id, :html_input => { :value => @patient } %>
+  <%= f.input :start_at %>
+  <%= f.input :end_at %>
+  <%= f.input :all_day %>
+  <hr />
+  <%= f.button :submit, :class => 'btn-primary bnt-small' %>
+
+<% end %>

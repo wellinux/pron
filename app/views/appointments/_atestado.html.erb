@@ -1,0 +1,14 @@
+<%= simple_form_for ([@appointment, @appointment.attests.build]), :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.hidden_field :appointment_id, :html_input => { :value => @appointment } %>
+    <%= f.input :data, as: :string, :input_html => { :value => l(Date.today) } %>
+    <%= f.input :cid, label: 'CID-10' %>
+    <%= f.input :quantidade_dias, collection: 1..15 %>
+    <%= f.input :data_inicial, as: :string, :input_html => { :value => l(Date.today) } %>
+    <%= f.input :local, :input_html => { :value => "Penedo/AL" } %>
+    <%= f.button :submit, :class => 'btn btn-primary btn-small' %>
+  </div>
+    
+<% end %>

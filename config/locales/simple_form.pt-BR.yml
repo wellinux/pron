@@ -1,0 +1,66 @@
+pt-BR:
+  simple_form:
+    required:
+      text: 'Obrigatório'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+     default_message: "Alguns erros foram encontrados, por favor verifique:"
+     errors:  
+    template:  
+      header:  
+        one: "Não foi possível gravar/alterar: 1 erro"  
+        other: "Não foi possível gravar/alterar: %{count} erros."  
+      body: "Por favor, verifique o(s) seguinte(s) campo(s):"  
+    messages:  
+      not_found: "não encontrado"  
+      already_confirmed: "já foi confirmado"  
+      not_locked: "não foi bloqueado"  
+      inclusion: "não está incluído na lista"  
+      exclusion: "não está disponível"  
+      invalid: "não é válido"  
+      confirmation: "não está de acordo com a confirmação"  
+      accepted: "deve ser aceito"  
+      empty: "não pode ficar vazio"  
+      blank: "não pode ficar em branco"  
+      too_long: "é muito longo (máximo: %{count} caracteres)"  
+      too_short: "é muito curto (mínimo: %{count} caracteres)"  
+      wrong_length: "não possui o tamanho esperado (%{count} caracteres)"  
+      taken: "já está em uso"  
+      not_a_number: "não é um número"  
+      not_an_integer: "não é um número inteiro"  
+      greater_than: "deve ser maior do que %{count}"  
+      greater_than_or_equal_to: "deve ser maior ou igual a %{count}"  
+      equal_to: "deve ser igual a %{count}"  
+      less_than: "deve ser menor do que %{count}"  
+      less_than_or_equal_to: "deve ser menor ou igual a %{count}"  
+      odd: "deve ser ímpar"  
+      even: "deve ser par"  
+      record_invalid: "A validação falhou: %{errors}" 
+  # Labels and hints examples
+  #    labels:
+  #    defaults:
+  #       password: 'Senha'
+  #     firm:
+  #       new:
+  #         cnpj: 'CNP/CEI'
+  #         razao_social: "Razão Social"
+  #         nome_fantasia: "Nome Fantasia"
+  #         frente_trabalho: "Frente de trabalho"
+  #         cnae: "CNAE"
+  #         atividade: "Atividade"
+  #         risco: "Risco"
+  #         endereco: "Endereço"
+  #         bairro: "Bairro"
+  #         cidade: "Cidade"
+  #         uf: "UF"
+  #         cep: "CEP"
+  #         telefone: "Telefone"
+  #       edit:
+  #         email: 'E-mail.'
+  #   hints:
+  #     defaults:
+  #       username: 'Usuário para Login.'
+  #       password: 'No special characters, please.'

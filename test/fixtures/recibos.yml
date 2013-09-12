@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  data: 2013-09-07
+  patient: 
+  valor: 9.99
+  referente: MyText
+  pj: false
+
+two:
+  data: 2013-09-07
+  patient: 
+  valor: 9.99
+  referente: MyText
+  pj: false

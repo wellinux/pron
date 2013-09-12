@@ -1,0 +1,4 @@
+<p class = "recibo"> 
+        Recebemos de <strong><%= @recibo.patient.firm.nome_fantasia %></strong>, a importância de 
+        <strong><%= valor_monetario(@recibo.valor) %> (<%= @recibo.valor_extenso %>)</strong> referente a <strong><%= @recibo.referente %></strong> do funcionário <strong><%= @recibo.patient.nome %></strong>.
+      </p>

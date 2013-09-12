@@ -1,0 +1,12 @@
+
+	<%= simple_form_for([@patient, @patient.recibos.build]) do |f| %>
+
+	<%= f.hidden_field :patient_id, :html_input => { :value => @patient } %>
+	<%= f.input :data, as: :string, :input_html => { :value => l(Date.today) } %>      
+	<%= f.input :valor, :placeholder => 'ex.: 500' %>
+	<%= f.input :valor_extenso, label: 'Valor por extenso', :placeholder => 'ex.: quinhentos reais' %>
+	<%= f.input :referente, :input_html => { :cols => 100, :rows => 2 }, :placeholder => 'ex.: Exame Admissional e Audiometria Tonal' %>
+	<%= f.input :pj, label: 'Pessoa Jurícica?' %>
+	<hr />
+	<%= f.button :submit, :class => 'btn btn-primary btn-small' %>
+<% end %>

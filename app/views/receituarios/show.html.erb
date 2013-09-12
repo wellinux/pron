@@ -1,0 +1,50 @@
+<%- model_class = Receituario -%>
+<div class="page-header centro">
+  <h1>Receituário</h1>
+</div>
+<br />
+<br />
+<p>
+  
+    Paciente: <strong><%= raw(@receituario.appointment.record.patient.nome) %>.</strong>
+</p>
+<br />
+  
+    <p><strong><u>Prescrição:</u></strong></p>
+    <%= raw(@receituario.prescricao) %>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<strong><%= @receituario.local %>, </strong> <%=l @receituario.created_at, format: :long %>.
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class "row">
+  <div class ="span4 centro">
+    <p class = "ass">   Carimbo/Assinatura do médico   </p>
+  </div>
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<div class="btn-group">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              appointment_path(@receituario.appointment.id), :class => 'btn btn-small'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_appointment_receituario_path(@receituario), :class => 'btn btn-warning btn-small' %>
+  
+</div>

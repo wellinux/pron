@@ -1,0 +1,9 @@
+<%= simple_form_for @exame, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :exame_category_id %>
+  <%= f.input :nome %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                exames_path, :class => 'btn' %>
+  </div>
+<% end %>

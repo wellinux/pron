@@ -1,0 +1,28 @@
+<%= simple_nested_form_for ([@appointment, @appointment.asos.build]), :html => { :class => 'form-horizontal' } do |f| %>
+
+<%= f.hidden_field :appointment_id, :input_html => { :value =>  @appointment } %>
+  <%= f.input :data, :as => :string, :input_html => { :value => l(Date.today) } %>
+  <%= f.simple_fields_for :occupational_risks, :html => { :multipart => true } do |r| %>
+    <div class = "alert alert-box-info" >
+    <div class = "row">
+      <div class = "span1 offset1">
+        <%= r.link_to_remove "", :class => 'btn btn-danger icon-minus-sign icon-white' %>
+      </div>
+      <div class = "span4">
+        <%= r.input :risk_category_id, collection: RiskCategory.all(:order => 'nome'), label_method: 'nome', :label => 'Selecione a Categoria' %>
+      </div>
+      <div class = "span5 offiset1">
+        <%= r.input :risk_id, collection: Risk.all(:order => 'nome_risco'), label_method: 'nome_risco', :label => 'Selecione o Risco' %>
+
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <%= f.link_to_add " Incluir Risco", :occupational_risks, :class => 'btn btn-inverse' %>
+  <hr />
+  <%= f.input :grau_exposicao, collection: (["AUSENTE", "INSIGNIFICANTE", "BAIXO", "MODERADO", "ALTO"]), as: :radio %>
+  <%= f.input :periodicidade, collection: (["SEMESTRAL", "ANUAL", "BIENAL"]), as: :radio %>
+  <%= f.input :obs, :label => 'Observações', :as => :ckeditor, 
+                    :input_html => { :ckeditor => {:toolbar => 'mini'} } %>
+  <%= f.button :submit, :class => 'btn-primary' %>
+<% end %>

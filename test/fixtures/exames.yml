@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  exame_category: 
+  nome: MyString
+
+two:
+  exame_category: 
+  nome: MyString

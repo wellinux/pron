@@ -1,0 +1,45 @@
+<%- model_class = Declaration -%>
+<div id="conteudo">
+    <div class = "centro">
+      <h3><em>Declaração</em></h3>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <p> 
+      Declaramos que <strong><%= @declaration.appointment.record.patient.nome %></strong>, portador do
+      <strong><%= @declaration.appointment.record.patient.tipo_documento %></strong> 
+      Nº.: <strong><%= @declaration.appointment.record.patient.documento %></strong>, permaneceu nesta
+      unidade no dia <strong><%=l @declaration.appointment.record.data %></strong> 
+      das <strong><%= @declaration.hora_inicio %>h</strong> às <strong><%= @declaration.hora_termino %>h</strong>, com a finalidade de: <%= raw(@declaration.anotacoes) %>
+    </p>
+    
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <strong><%= @declaration.local %>, </strong> <%=l @declaration.dia %>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class "row">
+      <div class ="span4">
+        <p class = "ass">   Carimbo/Assinatura do médico   </p>
+      </div>
+    </div>
+    <br />
+    <br />
+   
+    <div class="btn-group">
+      <%= link_to t('.back', :default => t("helpers.links.back")),
+                  appointment_path(@declaration.appointment.id), :class => 'btn btn-mini'  %>
+      <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                  edit_declaration_path(@declaration), :class => 'btn btn-warning btn-mini' %>
+    
+    </div>
+</div>

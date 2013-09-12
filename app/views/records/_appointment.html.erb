@@ -1,0 +1,46 @@
+<%= simple_nested_form_for ([@record, @record.appointments.build]), :html => { :class => 'form-horizontal' } do |f| %>
+
+  <%= f.association :record, label_method: :data , value_method: :id, include_blank: false, readonly: true %>
+  <%= f.input :data, as: :string, :input_html => { :value => l(Date.today) } %>
+
+  <%= f.input :categoria_exame, 
+             collection: (["ADMISSIONAL", "PERIÓDICO",
+                           "RETORNO AO TRABALHO", "MUDANÇA DE FUNÇÃO", "DEMISSIONAL"]), as: :radio %>
+  <%= f.input :secao, :input_html => { :value => (@record.patient.section.secao) } %>
+  <%= f.input :funcao, :input_html => { :value => (@record.patient.function.funcao) } %>
+  <%= f.input :peso %>
+  <%= f.input :altura %>
+  <%= f.input :pa %>
+  <%= f.input :pulso %>
+
+  <%= f.input :anamnese, :label => 'Anamnese', :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'mini'} } %>
+  <%= f.input :exame_fisico, :label => 'Exame Físico', :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'mini'} } %>
+
+  <hr />
+  <h5>EXAMES COMPLEMENTARES</h5>
+  <hr />
+
+  <%= f.simple_fields_for :complementary_exams, :html_input => { :multipart => true } do |ff| %>
+    <div class = "row">
+      <div class = "span2">
+        <%= ff.link_to_remove "", :class => 'btn btn-danger icon-minus-sign icon-white' %>
+      </div>
+      <div class = "span9">
+        <%= ff.association :exame, label_method: :nome, value_method: :id %>
+        <%= ff.input :data, as: :string %>
+        <%= ff.input :descricao_resultado, :input_html => { :rows => 3 } %>
+        <%= ff.input :imagem %>
+      </div>      
+    </div>
+  <% end %>
+  <%= f.link_to_add "", :complementary_exams, :class => 'btn btn-primary icon-plus-sign icon-white', :hint => "Adicionar Exame Complementar" %>
+  <hr />
+
+  <%= f.input :status, collection: (["Pendente", "Concluído"]), as: :radio %>
+  <%= f.input :conclusao, 
+           collection: (["Apto", "Inapto"]), as: :radio %> 
+
+  <div class="btn-group">
+   <%= f.button :submit, :class => 'btn-primary' %>
+  </div>
+<% end %>

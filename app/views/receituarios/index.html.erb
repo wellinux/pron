@@ -1,0 +1,24 @@
+<%- model_class = Receituario -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:paciente) %></th>
+      <th><%= model_class.human_attribute_name(:data) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @receituarios.each do |receituario| %>
+      <tr>
+        <td><%= receituario.appointment.record.patient.nome %></td>
+        <td><%=l receituario.created_at, format: :long %></td>
+        <td>
+          <%= link_to 'Exibir', receituario_path(receituario), :class => 'btn btn-mini' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
