@@ -1,4 +1,4 @@
-class CreateApointments < ActiveRecord::Migration
+class CreateAppointments < ActiveRecord::Migration
   def up
     create_table :appointments, :force => true do |f|
       f.references :record
