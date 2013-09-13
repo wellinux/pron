@@ -12,7 +12,7 @@ end
 
 module Prontusoft
   class Application < Rails::Application
-    config.assets.initialize_on_precompile = false
+
     #config.assets.precompile += %w(event_calendar.css)
     #config.assets.precompile += %w(impressao.css.scss)
     #config.assets.precompile += %w(record.css.scss)
@@ -62,6 +62,7 @@ module Prontusoft
 
     # Enable the asset pipeline
     config.assets.enabled = true
+    config.assets.initialize_on_precompile = false
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
