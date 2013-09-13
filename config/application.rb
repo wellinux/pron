@@ -1,4 +1,5 @@
 require File.expand_path('../boot', __FILE__)
+config.assets.initialize_on_precompile = false
 
 require 'rails/all'
 
@@ -69,6 +70,6 @@ module Prontusoft
 
     # Carrega assets do Ckeditor
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
-    config.assets.initialize_on_precompile = false
+
   end
 end
