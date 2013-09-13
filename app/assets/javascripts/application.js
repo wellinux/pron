@@ -25,9 +25,9 @@
 //= require event_calendar
 //= require ckeditor/config
 
-= require jquery_nested_form
-= require jquery_ui
-= require jquery
-= require jquery_ujs
-= require twitter/bootstrap
-= require bootstrap
+*= require jquery_nested_form
+*= require jquery_ui
+*= require jquery
+*= require jquery_ujs
+*= require twitter/bootstrap
+*= require bootstrap
