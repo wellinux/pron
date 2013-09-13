@@ -11,7 +11,7 @@ class CreateAppointments < ActiveRecord::Migration
       f.string  :pa
       f.string  :pulso
       f.text    :anamnese
-      t.string  :status
+      f.string  :status
       f.string  :conclusao
     end
     add_index :appointments, :record_id
