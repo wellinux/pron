@@ -51,7 +51,7 @@ Prontusoft::Application.configure do
   #config.assets.precompile += %w(record.css.scss)
 
   config.assets.initialize_on_precompile = false
-  config.assets.compile = false
+  config.assets.compile = true
   config.assets.precompile += %w( *.css *.js )
 
   # Disable delivery errors, bad email addresses will be ignored

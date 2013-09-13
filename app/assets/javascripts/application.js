@@ -13,7 +13,9 @@
 
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
 //= require jquery_nested_form
+//= require twitter/bootstrap
 //= require twitter/bootstrap/bootstrap-transition
 //= require twitter/bootstrap/bootstrap-tooltip
 //= require twitter/bootstrap/bootstrap-alert
@@ -23,11 +25,3 @@
 //= require ckeditor/init
 //= require ckeditor/config
 //= require event_calendar
-//= require ckeditor/config
-
-*= require jquery_nested_form
-*= require jquery_ui
-*= require jquery
-*= require jquery_ujs
-*= require twitter/bootstrap
-*= require bootstrap

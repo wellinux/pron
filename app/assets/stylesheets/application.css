@@ -10,11 +10,9 @@
  *
  *= require_self
  *= require_tree .
- */
-	= require jquery
-	= require event_calendar
-	= require ui/smoothness/jquery-ui-theme
-	= require bootstrap_and_overrides
+ *= require event_calendar
+ *= require bootstrap_and_overrides
+ */	
 
 #modal_con {
 	width: 95%; /* SET THE WIDTH OF THE MODAL */
