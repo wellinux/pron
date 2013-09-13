@@ -14,8 +14,7 @@ module Prontusoft
     config.assets.precompile += %w(event_calendar.css)
     config.assets.precompile += %w(impressao.css.scss)
     config.assets.precompile += %w(record.css.scss)
-
-    config.assets.initialize_on_precompile = false
+   
     
 
     # Settings in config/environments/* take precedence over those specified here.
@@ -70,5 +69,6 @@ module Prontusoft
 
     # Carrega assets do Ckeditor
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
+    config.assets.initialize_on_precompile = false
   end
 end
