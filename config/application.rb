@@ -6,15 +6,16 @@ if defined?(Bundler)
   # Bundler.require(*Rails.groups(:assets => %w(development test)))
   # If you want your assets lazily compiled in production, use this line
    Bundler.require(:default, :assets, Rails.env)
+   
 end
 
 
 module Prontusoft
   class Application < Rails::Application
     config.assets.initialize_on_precompile = false
-    config.assets.precompile += %w(event_calendar.css)
-    config.assets.precompile += %w(impressao.css.scss)
-    config.assets.precompile += %w(record.css.scss)
+    #config.assets.precompile += %w(event_calendar.css)
+    #config.assets.precompile += %w(impressao.css.scss)
+    #config.assets.precompile += %w(record.css.scss)
    
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
