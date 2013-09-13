@@ -1,6 +1,4 @@
 require File.expand_path('../boot', __FILE__)
-config.assets.initialize_on_precompile = false
-
 require 'rails/all'
 
 if defined?(Bundler)
@@ -9,6 +7,7 @@ if defined?(Bundler)
   # If you want your assets lazily compiled in production, use this line
   # Bundler.require(:default, :assets, Rails.env)
 end
+config.assets.initialize_on_precompile = false
 
 module Prontusoft
   class Application < Rails::Application
