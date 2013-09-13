@@ -25,3 +25,9 @@
 //= require ckeditor/init
 //= require ckeditor/config
 //= require event_calendar
+
+//= require jquery_nested_form
+//= require jquery
+//= require jquery_ujs
+//= require twitter/bootstrap
+//= require bootstrap
