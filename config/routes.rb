@@ -1,5 +1,7 @@
 Prontusoft::Application.routes.draw do
 
+  # get "page/index"
+
   resources :exame_categories do
     resources :exames
   end

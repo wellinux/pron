@@ -1,6 +1,6 @@
 class AddDeviseToUsers < ActiveRecord::Migration
   def self.up
-    drop_table :users, :force => true
+    #drop_table :users, :force => true
     create_table :users, :force => true do |t|
       ## Database authenticatable
       t.string :nome, :null => false
@@ -8,6 +8,7 @@ class AddDeviseToUsers < ActiveRecord::Migration
       t.string :crm
       t.string :email, :null => false, :default => ""
       t.string :encrypted_password, :null => false, :default => ""
+      t.boolean :admin
 
       ## Recoverable
       t.string   :reset_password_token

@@ -14,18 +14,18 @@
 ActiveRecord::Schema.define(:version => 20130910221710) do
 
   create_table "appointments", :force => true do |t|
+    t.integer "record_id"
     t.date    "data"
-    t.string  "pa"
-    t.integer "pulso"
-    t.text    "anamnese"
-    t.string  "conclusao"
-    t.string  "status"
-    t.string  "imc"
     t.string  "ordem_exame"
     t.string  "categoria_exame"
-    t.integer "record_id"
-    t.float   "peso"
     t.float   "altura"
+    t.float   "peso"
+    t.string  "imc"
+    t.string  "pa"
+    t.string  "pulso"
+    t.text    "anamnese"
+    t.string  "status"
+    t.string  "conclusao"
     t.string  "secao"
     t.string  "funcao"
     t.text    "exame_fisico"
@@ -37,9 +37,9 @@ ActiveRecord::Schema.define(:version => 20130910221710) do
     t.date     "data"
     t.integer  "appointment_id"
     t.string   "periodicidade"
+    t.string   "grau_exposicao"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
-    t.string   "grau_exposicao"
     t.text     "obs"
   end
 
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20130910221710) do
 
   create_table "complementary_exams", :force => true do |t|
     t.integer  "appointment_id"
+    t.integer  "exame_id"
     t.date     "data"
     t.text     "descricao_resultado"
     t.datetime "created_at",          :null => false
@@ -84,21 +85,19 @@ ActiveRecord::Schema.define(:version => 20130910221710) do
     t.string   "imagem_content_type"
     t.integer  "imagem_file_size"
     t.datetime "imagem_updated_at"
-    t.integer  "exame_id"
   end
 
   add_index "complementary_exams", ["appointment_id"], :name => "index_complementary_exams_on_appointment_id"
-  add_index "complementary_exams", ["exame_id"], :name => "index_complementary_exams_on_exame_id"
 
   create_table "declarations", :force => true do |t|
     t.integer  "appointment_id"
     t.date     "dia"
-    t.string   "local"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
     t.string   "hora_inicio"
     t.string   "hora_termino"
+    t.string   "local"
     t.text     "anotacoes"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   add_index "declarations", ["appointment_id"], :name => "index_declarations_on_appointment_id"
@@ -115,9 +114,9 @@ ActiveRecord::Schema.define(:version => 20130910221710) do
   add_index "events", ["patient_id"], :name => "index_events_on_patient_id"
 
   create_table "exame_categories", :force => true do |t|
-    t.string   "nome",       :limit => 100
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.string   "nome"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "exames", :force => true do |t|
@@ -158,10 +157,10 @@ ActiveRecord::Schema.define(:version => 20130910221710) do
 
   create_table "occupational_risks", :force => true do |t|
     t.integer  "aso_id"
+    t.integer  "risk_category_id"
     t.integer  "risk_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
-    t.integer  "risk_category_id"
   end
 
   add_index "occupational_risks", ["aso_id"], :name => "index_occupational_risks_on_aso_id"
@@ -169,24 +168,22 @@ ActiveRecord::Schema.define(:version => 20130910221710) do
   add_index "occupational_risks", ["risk_id"], :name => "index_occupational_risks_on_risk_id"
 
   create_table "patients", :force => true do |t|
+    t.integer  "firm_id"
     t.string   "matricula"
     t.string   "nome"
+    t.date     "data_nascimento"
     t.string   "nome_mae"
     t.string   "sexo"
     t.string   "documento"
-    t.integer  "firm_id"
-    t.integer  "section_id"
-    t.integer  "function_id"
+    t.string   "tipo_documento"
+    t.string   "section"
+    t.string   "function"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
-    t.date     "data_nascimento"
-    t.string   "tipo_documento"
   end
 
   add_index "patients", ["firm_id"], :name => "index_patients_on_firm_id"
-  add_index "patients", ["function_id"], :name => "index_patients_on_function_id"
   add_index "patients", ["matricula", "data_nascimento", "firm_id"], :name => "index_patients_on_matricula_and_data_nascimento_and_firm_id"
-  add_index "patients", ["section_id"], :name => "index_patients_on_section_id"
 
   create_table "receituarios", :force => true do |t|
     t.integer  "appointment_id"
@@ -201,12 +198,12 @@ ActiveRecord::Schema.define(:version => 20130910221710) do
   create_table "recibos", :force => true do |t|
     t.date     "data"
     t.integer  "patient_id"
-    t.decimal  "valor"
+    t.decimal  "valor",         :precision => 10, :scale => 0
     t.string   "valor_extenso"
     t.text     "referente"
     t.boolean  "pj"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
   end
 
   add_index "recibos", ["patient_id"], :name => "index_recibos_on_patient_id"
@@ -227,10 +224,8 @@ ActiveRecord::Schema.define(:version => 20130910221710) do
   end
 
   create_table "risks", :force => true do |t|
-    t.integer  "risk_category_id"
-    t.string   "nome_risco"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.integer "risk_category_id"
+    t.string  "nome_risco"
   end
 
   add_index "risks", ["risk_category_id"], :name => "index_risks_on_risk_category_id"
@@ -254,8 +249,12 @@ ActiveRecord::Schema.define(:version => 20130910221710) do
   add_index "solic_exames", ["appointment_id"], :name => "index_solic_exames_on_appointment_id"
 
   create_table "users", :force => true do |t|
+    t.string   "nome",                                   :null => false
+    t.string   "login"
+    t.string   "crm"
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
+    t.boolean  "admin"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -264,9 +263,6 @@ ActiveRecord::Schema.define(:version => 20130910221710) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "nome"
-    t.string   "login"
-    t.string   "crm"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
