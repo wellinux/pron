@@ -22,7 +22,7 @@
   </head>
   <body>
     <div id="tudo">
-      <div class="navbar navbar-fixed-top">
+      <div class="navbar">
         <div class="navbar-inner">
           <div class="container-fluid">
             <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
@@ -33,9 +33,11 @@
             <span class="brand" ><%=l Date.today %></span>
             <div class="container-fluid nav-collapse">
               <ul class="nav">
-                <li><%= link_to "Home", root_path %></li> 
+                <li><%= link_to "Home", root_path %></li>
+                <li><%= link_to "Agenda", calendar_path %></li>
                 <li><%= link_to "Empresas", firms_path %></li>
                 <li><%= link_to "Categoria-Risco", risk_categories_path %></li>
+                <li><%= link_to "Categoria-Exame", exame_categories_path %></li>
                 <li><% if user_signed_in? %>
                   <span class = "brand"><small>Usuário: </small><%= current_user.login %></span>
                 <li><%= link_to "Sair", destroy_user_session_path, :method => :delete %></li>

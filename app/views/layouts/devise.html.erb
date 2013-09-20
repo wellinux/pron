@@ -33,10 +33,12 @@
     <!-- For all other devices -->
     <!-- Size should be 32 x 32 pixels -->
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
+
+    <%= javascript_include_tag "application" %>
   </head>
   <body>
 
-    <div class="navbar navbar-fixed-top">
+    <div class="navbar">
       <div class="navbar-inner">
         <div class="container-fluid">
           <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
@@ -48,10 +50,7 @@
           <div class="container-fluid nav-collapse">
             <ul class="nav">
               <li><%= link_to "Home", root_path %></li>
-              <li><%= link_to "Agenda", calendar_path %></li>
-              <li><%= link_to "Empresas", firms_path %></li>
-              <li><%= link_to "Categoria-Risco", risk_categories_path %></li>
-              <li><%= link_to "Categoria-Exame", exame_categories_path %></li>
+              
               <li><% if user_signed_in? %>
                 <span class = "brand"><small>Usuário: </small><%= current_user.login %></span>
               <li><%= link_to "Sair", destroy_user_session_path, :method => :delete %></li>
@@ -64,27 +63,15 @@
       </div>
     </div>
 
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span12">
+    <div class="container">
+      <div class="row">
+        <div class="span6 offset4">
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
       </div><!--/row-->
 
-      
     </div> <!-- /container -->
-    <div class = "row-fluid">
-    <div class = "span12">
-      <footer>
-        <p>&copy; Prontusoft - 2013</p>
-      </footer>
-    </div>
 
-    <!-- Javascripts
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <%= javascript_include_tag :defaults %>
-    <%= javascript_include_tag "application" %>
   </body>
 </html>

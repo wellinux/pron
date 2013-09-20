@@ -25,8 +25,6 @@ class PatientsController < ApplicationController
   # GET /patients/new.json
   def new
     @patient  = Patient.new
-    @section  = Section.all
-    @function = Function.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,9 +35,6 @@ class PatientsController < ApplicationController
   # GET /patients/1/edit
   def edit
     @patient  = Patient.find(params[:id])
-    @firm     = Firm.all
-    @section  = Section.all
-    @function = Function.all
   end
 
   # POST /patients

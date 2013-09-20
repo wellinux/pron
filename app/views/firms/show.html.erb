@@ -33,8 +33,6 @@
               
 </div><br />
 
-<a href="#" rel="tooltip" title="primeiro tooltip">passe o mouse em mim</a>
-
 <dl class="dl-horizontal">
 
   <dt><strong><%= model_class.human_attribute_name(:nome_fantasia) %>:</strong></dt>
@@ -75,7 +73,7 @@
     <td><%= patient.matricula %></td>
     <td><%= link_to patient.nome, firm_patient_path(@firm, patient) %></td>
     <td><%= patient.nome_mae %></td>
-    <td><%= patient.function.funcao %></td>
+    <td><%= patient.function %></td>
     
   </tr>
   <% end %>

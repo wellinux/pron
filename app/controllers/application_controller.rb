@@ -1,5 +1,9 @@
 class ApplicationController < ActionController::Base
-	before_filter :authenticate_user!
+	before_filter :authenticate_user!, :except => [:index]
+
+	def after_sign_in_path_for(resource)
+    "/calendar"
+	end
 	
 	protect_from_forgery
 

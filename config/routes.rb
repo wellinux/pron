@@ -1,6 +1,8 @@
 Prontusoft::Application.routes.draw do
 
-  # get "page/index"
+  get "page/:id" => "page#index", :as => :page
+
+  root to: "page#index"
 
   resources :exame_categories do
     resources :exames
@@ -9,7 +11,7 @@ Prontusoft::Application.routes.draw do
 
   resources :events
 
-  root to: "calendar#index"
+  # get "calendar#index"
 
   match '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
 

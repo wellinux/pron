@@ -6,8 +6,8 @@
   <%= f.input :categoria_exame, 
              collection: (["ADMISSIONAL", "PERIÓDICO",
                            "RETORNO AO TRABALHO", "MUDANÇA DE FUNÇÃO", "DEMISSIONAL"]), as: :radio %>
-  <%= f.input :secao, :input_html => { :value => (@record.patient.section.secao) } %>
-  <%= f.input :funcao, :input_html => { :value => (@record.patient.function.funcao) } %>
+  <%= f.input :secao, :input_html => { :value => (@record.patient.section) } %>
+  <%= f.input :funcao, :input_html => { :value => (@record.patient.function) } %>
   <%= f.input :peso %>
   <%= f.input :altura %>
   <%= f.input :pa %>

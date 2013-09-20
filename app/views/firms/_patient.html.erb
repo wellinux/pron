@@ -9,8 +9,8 @@
  <%= f.input :sexo, :collection => (["Masculino", "Feminino"]), :as => :radio %>
  <%= f.input :documento %>
  <%= f.input :tipo_documento, collection: (["CPF", "RG", "CTPS", "CNH", "PENDENTE"]), as: :radio_buttons %>
- <%= f.association :section, collection: @firm.sections.all, label_method: :secao %>
- <%= f.association :function, collection: @firm.functions.all, label_method: :funcao %>
+ <%= f.input :section, collection: @firm.sections.all, value_method: :secao, label_method: :secao %>
+ <%= f.input :function, collection: @firm.functions.all, value_method: :funcao, label_method: :funcao %>
 
  <%= f.submit nil, :class => 'btn btn-primary' %>
 <% end %>

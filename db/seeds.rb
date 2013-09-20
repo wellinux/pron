@@ -7,6 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #==RISCOS OCUPACIONAIS==#
 
+User.create(nome: 'Prontumaster', login: 'master', crm: '2013', email: 'wjas@globo.com', password: 'master123')
+
 RiskCategory.create(:nome=>"Físicos")		#risk_category_id = 1
 RiskCategory.create(:nome=>"Químicos")		#risk_category_id = 2
 RiskCategory.create(:nome=>"Biológicos")	#risk_category_id = 3

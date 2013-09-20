@@ -1,4 +1,5 @@
 class PageController < ApplicationController
-  def index
+	def index
+    render params[:id]
   end
 end

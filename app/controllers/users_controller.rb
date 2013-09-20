@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  layout :resolve_layout  #O layout vai sair da decisão do método abaixo  
-
+ 
   # GET /users
   # GET /users.json
   def index
@@ -81,17 +80,5 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
       format.json { head :no_content }
     end
-  end
-
-  # E este método  
-  private  
-    def resolve_layout  
-      case action_name  
-        when "create","show","edit","index"
-          "user"  
-        else  
-          "application"  
-      end  
-  end
-  
+  end  
 end
